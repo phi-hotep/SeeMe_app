@@ -16,7 +16,7 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         centerTitle: true,
         leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
-        title: const Text('SeeM'),
+        title: const Text('SeeMe'),
         actions: [
           IconButton(
             onPressed: () {},
