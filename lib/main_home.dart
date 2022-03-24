@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:seeme_app/ui/ads.dart';
-import 'package:seeme_app/ui/ambassador.dart';
-import 'package:seeme_app/ui/home.dart';
-import 'package:seeme_app/ui/shop.dart';
-import 'seemetheme.dart';
+import 'package:seeme_app/screens/ads.dart';
+import 'package:seeme_app/screens/ambassador.dart';
+import 'package:seeme_app/screens/home.dart';
+import 'package:seeme_app/screens/shop.dart';
 
 class MainHome extends StatefulWidget {
   const MainHome({Key? key, required this.title}) : super(key: key);
