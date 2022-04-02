@@ -55,21 +55,28 @@ class _HomeState extends State<Home> {
               Positioned(
                 right: 20,
                 child: Switch(
-                  activeColor: Colors.red,
-                  value: _switchTapped,
+                  activeColor: Colors.green,
+                  value: Provider.of<ThemeState>(context, listen: false)
+                      .isSwitchToBusinessMode,
                   onChanged: (val) {
-                    setState(() {
-                      _switchTapped = val;
-                    });
+                    Provider.of<ThemeState>(context, listen: false).switchMode =
+                        val;
                     var snackbarBusiness = const SnackBar(
-                      content: Text('Business mode '),
+                      backgroundColor: Colors.green,
+                      content: Text(
+                        'Business mode',
+                        style: TextStyle(color: Colors.white),
+                      ),
                       duration: Duration(seconds: 1),
                     );
                     var snackbarsimple = const SnackBar(
-                      content: Text('Simple mode '),
+                      backgroundColor: Colors.red,
+                      content: Text('Simple mode',
+                          style: TextStyle(color: Colors.white)),
                       duration: Duration(seconds: 1),
                     );
-                    if (_switchTapped = true) {
+                    if (Provider.of<ThemeState>(context, listen: false)
+                        .isSwitchToBusinessMode) {
                       ScaffoldMessenger.of(context)
                           .showSnackBar(snackbarBusiness);
                     } else {
