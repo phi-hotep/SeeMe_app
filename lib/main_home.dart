@@ -42,7 +42,11 @@ class _MainHomeState extends State<MainHome> {
               BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
               BottomNavigationBarItem(icon: Icon(Icons.store), label: 'Shop'),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.speaker_rounded), label: 'Ads'),
+                  icon: Icon(
+                    Icons.campaign,
+                    size: 30,
+                  ),
+                  label: 'Ads'),
               BottomNavigationBarItem(
                   icon: Icon(Icons.group), label: 'Ambassador'),
             ],

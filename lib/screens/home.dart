@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:seeme_app/models/models.dart';
+import 'package:provider/provider.dart';
+import 'package:seeme_app/state/theme_state.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -10,14 +12,26 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   bool _switchTapped = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.menu)),
+        leading: IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.menu),
+        ),
         title: const Text('SeeMe'),
         actions: [
+          IconButton(
+            onPressed: () {
+              Provider.of<ThemeState>(context, listen: false).changeTheme();
+            },
+            icon: Icon(Provider.of<ThemeState>(context).getTheme
+                ? Icons.sunny
+                : Icons.brightness_2),
+          ),
           IconButton(
             onPressed: () {},
             icon: const Icon(

@@ -15,18 +15,23 @@ class SeeMeApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final seeMeTheme = SeeMeTheme.dark();
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: seeMeTheme,
-      title: 'SeeMe',
-      home: MultiProvider(
-        providers: [
-          ChangeNotifierProvider(
-            create: (context) => TabManager(),
-          )
-        ],
-        child: const MainHome(title: 'SeeMe'),
-      ),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => TabManager(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => ThemeState(),
+        ),
+      ],
+      child: Consumer<ThemeState>(builder: (context, _value, child) {
+        return MaterialApp(
+          title: 'SeeMe',
+          debugShowCheckedModeBanner: false,
+          theme: _value.getTheme ? SeeMeTheme.dark() : SeeMeTheme.light(),
+          home: const MainHome(title: 'SeeMe'),
+        );
+      }),
     );
   }
 }
