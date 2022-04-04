@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ThemeState extends ChangeNotifier {
+class ThemeManager extends ChangeNotifier {
   bool _theme = false;
   bool _isSwitchToBusinessMode = false;
 

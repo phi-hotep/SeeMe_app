@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:seeme_app/models/models.dart';
 import 'package:provider/provider.dart';
-import 'package:seeme_app/state/theme_state.dart';
+import 'package:seeme_app/state/theme_manager.dart';
 import 'package:seeme_app/components/components.dart' show DrawerMenuWidget;
 
 class Home extends StatefulWidget {
@@ -36,9 +36,9 @@ class _HomeState extends State<Home>
         actions: [
           IconButton(
             onPressed: () {
-              Provider.of<ThemeState>(context, listen: false).changeTheme();
+              Provider.of<ThemeManager>(context, listen: false).changeTheme();
             },
-            icon: Icon(Provider.of<ThemeState>(context).getTheme
+            icon: Icon(Provider.of<ThemeManager>(context).getTheme
                 ? Icons.sunny
                 : Icons.brightness_2),
           ),
@@ -66,11 +66,11 @@ class _HomeState extends State<Home>
                 right: 20,
                 child: Switch(
                   activeColor: Colors.green,
-                  value: Provider.of<ThemeState>(context, listen: false)
+                  value: Provider.of<ThemeManager>(context, listen: false)
                       .isSwitchToBusinessMode,
                   onChanged: (val) {
-                    Provider.of<ThemeState>(context, listen: false).switchMode =
-                        val;
+                    Provider.of<ThemeManager>(context, listen: false)
+                        .switchMode = val;
                     var snackbarBusiness = const SnackBar(
                       backgroundColor: Colors.green,
                       content: Text(
@@ -85,7 +85,7 @@ class _HomeState extends State<Home>
                           style: TextStyle(color: Colors.white)),
                       duration: Duration(seconds: 1),
                     );
-                    if (Provider.of<ThemeState>(context, listen: false)
+                    if (Provider.of<ThemeManager>(context, listen: false)
                         .isSwitchToBusinessMode) {
                       ScaffoldMessenger.of(context)
                           .showSnackBar(snackbarBusiness);

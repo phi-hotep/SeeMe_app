@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:seeme_app/screens/ads.dart';
 import 'package:seeme_app/screens/ambassador.dart';
+import 'package:seeme_app/screens/drawer.dart';
 import 'package:seeme_app/screens/home.dart';
 import 'package:seeme_app/screens/shop.dart';
 import 'package:provider/provider.dart';
 import 'state/state.dart';
-import 'components/components.dart';
 
 class MainHome extends StatefulWidget {
   const MainHome({Key? key, required this.title}) : super(key: key);
@@ -96,49 +96,46 @@ class _MainHomeState extends State<MainHome> {
             ..scale(scaleFactor),
           child: AbsorbPointer(
             absorbing: isDrawerOpen,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(isDrawerOpen ? 20 : 0),
-              child: Container(
-                child: SafeArea(
-                  child: Scaffold(
-                    body: IndexedStack(
-                      index: tabManager.selectedTab,
-                      children: [
-                        Home(
-                          drawerOpen: openDrawer,
-                          isDrawerOpen: isDrawerOpen,
-                        ),
-                        const Shop(),
-                        const Adverts(),
-                        const Ambassador(),
-                      ],
-                    ),
-                    bottomNavigationBar: BottomNavigationBar(
-                      currentIndex: tabManager.selectedTab,
-                      onTap: (index) {
-                        tabManager.goToTab(index);
-                      },
-                      type: BottomNavigationBarType.fixed,
-                      backgroundColor: Theme.of(context)
-                          .bottomNavigationBarTheme
-                          .backgroundColor,
-                      selectedItemColor:
-                          Theme.of(context).textSelectionTheme.selectionColor,
-                      items: const <BottomNavigationBarItem>[
-                        BottomNavigationBarItem(
-                            icon: Icon(Icons.home), label: 'Home'),
-                        BottomNavigationBarItem(
-                            icon: Icon(Icons.store), label: 'Shop'),
-                        BottomNavigationBarItem(
-                            icon: Icon(
-                              Icons.campaign,
-                              size: 30,
-                            ),
-                            label: 'Ads'),
-                        BottomNavigationBarItem(
-                            icon: Icon(Icons.group), label: 'Ambassador'),
-                      ],
-                    ),
+            child: Container(
+              child: SafeArea(
+                child: Scaffold(
+                  body: IndexedStack(
+                    index: tabManager.selectedTab,
+                    children: [
+                      Home(
+                        drawerOpen: openDrawer,
+                        isDrawerOpen: isDrawerOpen,
+                      ),
+                      const Shop(),
+                      const Adverts(),
+                      const Ambassador(),
+                    ],
+                  ),
+                  bottomNavigationBar: BottomNavigationBar(
+                    currentIndex: tabManager.selectedTab,
+                    onTap: (index) {
+                      tabManager.goToTab(index);
+                    },
+                    type: BottomNavigationBarType.fixed,
+                    backgroundColor: Theme.of(context)
+                        .bottomNavigationBarTheme
+                        .backgroundColor,
+                    selectedItemColor:
+                        Theme.of(context).textSelectionTheme.selectionColor,
+                    items: const <BottomNavigationBarItem>[
+                      BottomNavigationBarItem(
+                          icon: Icon(Icons.home), label: 'Home'),
+                      BottomNavigationBarItem(
+                          icon: Icon(Icons.store), label: 'Shop'),
+                      BottomNavigationBarItem(
+                          icon: Icon(
+                            Icons.campaign,
+                            size: 30,
+                          ),
+                          label: 'Ads'),
+                      BottomNavigationBarItem(
+                          icon: Icon(Icons.group), label: 'Ambassador'),
+                    ],
                   ),
                 ),
               ),
