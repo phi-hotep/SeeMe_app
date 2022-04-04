@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'seemetheme.dart';
+import 'seeme_theme.dart';
 import 'main_home.dart';
 import 'state/state.dart';
 import 'package:provider/provider.dart';
@@ -21,10 +21,10 @@ class SeeMeApp extends StatelessWidget {
           create: (context) => TabManager(),
         ),
         ChangeNotifierProvider(
-          create: (context) => ThemeState(),
+          create: (context) => ThemeManager(),
         ),
       ],
-      child: Consumer<ThemeState>(builder: (context, _value, child) {
+      child: Consumer<ThemeManager>(builder: (context, _value, child) {
         return MaterialApp(
           title: 'SeeMe',
           debugShowCheckedModeBanner: false,
