@@ -2,15 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:seeme_app/models/models.dart';
 import 'package:provider/provider.dart';
 import 'package:seeme_app/state/theme_state.dart';
+import 'package:seeme_app/components/components.dart' show DrawerMenuWidget;
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  final VoidCallback? drawerOpen;
+  bool? isDrawerOpen;
+  Home({Key? key, this.drawerOpen, this.isDrawerOpen}) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends State<Home>
+    with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
   bool _switchTapped = false;
 
   @override
@@ -20,7 +27,10 @@ class _HomeState extends State<Home> {
         centerTitle: true,
         leading: IconButton(
           onPressed: () {},
-          icon: const Icon(Icons.menu),
+          icon: DrawerMenuWidget(
+            onClicked: widget.drawerOpen,
+            isDrawerOpen: widget.isDrawerOpen!,
+          ),
         ),
         title: const Text('SeeMe'),
         actions: [

@@ -24,7 +24,7 @@ class SeeMeTheme {
       color: Colors.black,
     ),
     headline6: GoogleFonts.roboto(
-      fontSize: 20.0,
+      fontSize: 15.0,
       fontWeight: FontWeight.w600,
       color: Colors.black,
     ),
@@ -52,7 +52,7 @@ class SeeMeTheme {
       color: Colors.white,
     ),
     headline6: GoogleFonts.roboto(
-      fontSize: 20.0,
+      fontSize: 15.0,
       fontWeight: FontWeight.w600,
       color: Colors.white,
     ),
