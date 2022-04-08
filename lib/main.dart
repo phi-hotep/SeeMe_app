@@ -32,7 +32,7 @@ class SeeMeApp extends StatelessWidget {
         return MaterialApp(
           title: 'SeeMe',
           debugShowCheckedModeBanner: false,
-          theme: _value.getTheme ? SeeMeTheme.light() : SeeMeTheme.dark(),
+          theme: _value.getTheme ? SeeMeTheme.dark() : SeeMeTheme.light(),
           home: const MainHome(title: 'SeeMe'),
         );
       }),
