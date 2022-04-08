@@ -6,6 +6,10 @@ class DrawerItemModel {
   final Icon? icon;
   final Widget drawerPage;
 
-  const DrawerItemModel(
-      {this.title, this.subTitle, this.icon, required this.drawerPage});
+  const DrawerItemModel({
+    this.title,
+    this.subTitle,
+    this.icon,
+    required this.drawerPage,
+  });
 }
