@@ -53,6 +53,6 @@ class DrawerItemsData {
     credit,
     setting,
     inviteFriend,
-    help
+    help,
   ];
 }
