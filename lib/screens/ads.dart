@@ -7,9 +7,7 @@ class Adverts extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Container(
-          color: Colors.blue,
-        ),
+        body: Container(color: Colors.blue),
       ),
     );
   }
