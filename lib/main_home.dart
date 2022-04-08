@@ -16,12 +16,15 @@ class MainHome extends StatefulWidget {
 }
 
 class _MainHomeState extends State<MainHome> {
-  late double xOffset = 230;
-  late double yOffset = 150;
-  late double scaleFactor = 0.6;
+  // variables permettant de basculer la page courante
+  // avec les différentes valeurs afin d'afficher la page de menu cachée
+  late double xOffset;
+  late double yOffset;
+  late double scaleFactor;
   late bool isDrawerOpen;
   bool isDragging = false;
 
+// Initialiser les la fnct closeDrawer
   @override
   void initState() {
     super.initState();
@@ -32,8 +35,8 @@ class _MainHomeState extends State<MainHome> {
   void openDrawer() {
     setState(() {
       xOffset = 250;
-      yOffset = 150;
-      scaleFactor = 0.6;
+      yOffset = 200;
+      scaleFactor = 0.5;
       isDrawerOpen = true;
     });
   }
@@ -82,7 +85,7 @@ class _MainHomeState extends State<MainHome> {
         onHorizontalDragStart: (details) => isDragging = true,
         onHorizontalDragUpdate: (details) {
           if (!isDragging) return;
-          const delta = 1;
+          const delta = 3;
           if (details.delta.dx > delta) {
             openDrawer();
           } else if (details.delta.dx < -delta) {
@@ -96,8 +99,9 @@ class _MainHomeState extends State<MainHome> {
             ..scale(scaleFactor),
           child: AbsorbPointer(
             absorbing: isDrawerOpen,
-            child: Container(
-              child: SafeArea(
+            child: SafeArea(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(isDrawerOpen ? 20 : 0),
                 child: Scaffold(
                   body: IndexedStack(
                     index: tabManager.selectedTab,

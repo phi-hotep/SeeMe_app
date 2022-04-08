@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:seeme_app/state/business_manager.dart';
 import 'seeme_theme.dart';
 import 'main_home.dart';
 import 'state/state.dart';
@@ -23,6 +24,9 @@ class SeeMeApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => ThemeManager(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => BusinessManager(),
+        )
       ],
       child: Consumer<ThemeManager>(builder: (context, _value, child) {
         return MaterialApp(

@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 
-class Ambassador extends StatefulWidget {
+class Ambassador extends StatelessWidget {
   const Ambassador({Key? key}) : super(key: key);
 
   @override
-  State<Ambassador> createState() => _AmbassadorState();
-}
-
-class _AmbassadorState extends State<Ambassador> {
-  @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.amber,
+    return SafeArea(
+      child: Scaffold(
+        body: Container(
+          color: Colors.amber,
+        ),
+      ),
     );
   }
 }
