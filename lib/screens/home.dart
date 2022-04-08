@@ -16,7 +16,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home>
     with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
   // ici on redefinit la fonction en retournant la valeur true
-  //pour maintenir l'état du contenu de la page en cas de navigation vers une autre
+  //pour maintenir l'état du contenu de la page
+  //en cas de navigation vers une autre
   @override
   // TODO: implement wantKeepAlive
   bool get wantKeepAlive => true;
