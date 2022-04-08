@@ -35,7 +35,7 @@ class _MainHomeState extends State<MainHome> {
   void openDrawer() {
     setState(() {
       xOffset = 250;
-      yOffset = 200;
+      yOffset = 150;
       scaleFactor = 0.5;
       isDrawerOpen = true;
     });
