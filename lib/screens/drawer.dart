@@ -12,7 +12,7 @@ class DrawerWidget extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
+            SizedBox(
               height: 200,
               width: 360,
               child: Padding(
