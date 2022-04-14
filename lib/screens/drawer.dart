@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:seeme_app/data/data.dart';
 import 'package:provider/provider.dart';
+import 'package:seeme_app/screens/drawer_screens/settings.dart';
 import 'package:seeme_app/state/theme_manager.dart';
 
 class DrawerWidget extends StatelessWidget {
@@ -12,47 +13,7 @@ class DrawerWidget extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
-              height: 200,
-              width: 360,
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: Stack(children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const CircleAvatar(
-                        backgroundImage: AssetImage('assets/images/femme5.jpg'),
-                        radius: 70,
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text('Hotep Industries'),
-                          Text('Bomokin Hugues '),
-                        ],
-                      ),
-                    ],
-                  ),
-                  Positioned(
-                    right: 5,
-                    child: IconButton(
-                      onPressed: () {
-                        Provider.of<ThemeManager>(context, listen: false)
-                            .changeTheme();
-                      },
-                      icon: Icon(Provider.of<ThemeManager>(context).getTheme
-                          ? Icons.sunny
-                          : Icons.brightness_2),
-                    ),
-                  ),
-                ]),
-              ),
-            ),
+            buildHeader(context),
             const SizedBox(height: 10),
             const Divider(
               indent: 25.0,
@@ -62,6 +23,62 @@ class DrawerWidget extends StatelessWidget {
             ),
             buildDrawerItems(context),
           ],
+        ),
+      ),
+    );
+  }
+
+  Material buildHeader(BuildContext context) {
+    return Material(
+      child: InkWell(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const Settings(),
+            ),
+          );
+        },
+        child: SizedBox(
+          height: 200,
+          width: 360,
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Stack(children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  const CircleAvatar(
+                    backgroundImage: AssetImage('assets/images/femme5.jpg'),
+                    radius: 70,
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Text('Hotep Industries'),
+                      Text('Bomokin Hugues '),
+                    ],
+                  ),
+                ],
+              ),
+              Positioned(
+                right: 5,
+                child: IconButton(
+                  onPressed: () {
+                    Provider.of<ThemeManager>(context, listen: false)
+                        .changeTheme();
+                  },
+                  icon: Icon(Provider.of<ThemeManager>(context).getTheme
+                      ? Icons.sunny
+                      : Icons.brightness_2),
+                ),
+              ),
+            ]),
+          ),
         ),
       ),
     );
