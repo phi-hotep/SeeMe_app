@@ -43,6 +43,19 @@ class _HomeState extends State<Home>
               size: 35,
             ),
           ),
+          IconButton(
+            onPressed: () {
+              // Methode de Flutter pour implémenter la page de recherche
+              showSearch(
+                context: context,
+                delegate: MySearchDelegate(),
+              );
+            },
+            icon: const Icon(
+              Icons.search,
+              size: 35,
+            ),
+          ),
         ],
       ),
       body: Padding(
@@ -116,5 +129,77 @@ class _HomeState extends State<Home>
         ),
       ),
     );
+  }
+}
+
+// Ici on implémente la page de recherche -->
+
+class MySearchDelegate extends SearchDelegate {
+  List<String> searchResults = [
+    'Hugues',
+    'Arnold',
+    'Gilles',
+    'Raymond',
+    'Yves',
+    'Ronald',
+    'Francine',
+    'Didier',
+    'Salomé',
+    'Kenny',
+    'Réné',
+    'Josceline'
+  ];
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    return [
+      // Pour tout éffacer
+      IconButton(
+        onPressed: () {
+          if (query.isEmpty) {
+            close(context, null);
+          } else {
+            query = '';
+          }
+        },
+        icon: const Icon(
+          Icons.close,
+          color: Colors.red,
+        ),
+      ),
+    ];
+  }
+
+  @override
+  Widget? buildLeading(BuildContext context) {} // revenir en arrière
+
+  @override
+  Widget buildResults(BuildContext context) {
+    return Center(
+      child: Text(
+        query,
+        style: const TextStyle(fontSize: 30),
+      ),
+    );
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List<String> suggestions = searchResults.where((element) {
+      final result = element.toLowerCase();
+      final input = query.toLowerCase();
+      return result.contains(input);
+    }).toList();
+    return ListView.builder(
+        itemCount: suggestions.length,
+        itemBuilder: (context, index) {
+          final suggestion = suggestions[index];
+          return ListTile(
+            title: Text(suggestion),
+            onTap: () {
+              query = suggestion;
+              showResults(context);
+            },
+          );
+        });
   }
 }
