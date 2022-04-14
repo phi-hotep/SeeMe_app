@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:seeme_app/screens/drawer_screens/settings_profile.dart';
 
 class Settings extends StatelessWidget {
   const Settings({Key? key}) : super(key: key);
@@ -12,7 +13,14 @@ class Settings extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SettingsProfileInfo(),
+                ),
+              );
+            },
             child: const ListTile(
               leading: CircleAvatar(
                 backgroundImage: AssetImage('assets/images/femme5.jpg'),
