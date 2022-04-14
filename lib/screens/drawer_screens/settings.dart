@@ -9,6 +9,86 @@ class Settings extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Settings'),
       ),
+      body: SingleChildScrollView(
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          InkWell(
+            onTap: () {},
+            child: const ListTile(
+              leading: CircleAvatar(
+                backgroundImage: AssetImage('assets/images/femme5.jpg'),
+                radius: 30,
+              ),
+              title: Text('Hotep Industries'),
+              subtitle: Text('Bomokin Hugues'),
+            ),
+          ),
+          const Divider(),
+          InkWell(
+            onTap: () {},
+            child: const ListTile(
+              leading: Icon(Icons.store),
+              title: Text('Business Tools'),
+              subtitle: Text('Profile, catalog, etc.'),
+            ),
+          ),
+          const Divider(),
+          InkWell(
+            onTap: () {},
+            child: const ListTile(
+              leading: Icon(Icons.key),
+              title: Text('Acount'),
+              subtitle: Text('Privacy, security, etc.'),
+            ),
+          ),
+          const Divider(),
+          InkWell(
+            onTap: () {},
+            child: const ListTile(
+              leading: Icon(Icons.chat),
+              title: Text('Chats'),
+              subtitle: Text('Theme, wallpaper, etc.'),
+            ),
+          ),
+          const Divider(),
+          InkWell(
+            onTap: () {},
+            child: const ListTile(
+              leading: Icon(Icons.notifications),
+              title: Text('Notifications'),
+              subtitle: Text('Message, group, etc.'),
+            ),
+          ),
+          const Divider(),
+          InkWell(
+            onTap: () {},
+            child: const ListTile(
+              leading: Icon(Icons.storage),
+              title: Text('Storage and data'),
+              subtitle: Text('Network usage, auto-download, etc.'),
+            ),
+          ),
+          const Divider(),
+          InkWell(
+            onTap: () {},
+            child: const ListTile(
+              leading: Icon(Icons.help),
+              title: Text('Help'),
+              subtitle: Text('Help center, contact us, etc.'),
+            ),
+          ),
+          const Divider(),
+          InkWell(
+            onTap: () {},
+            child: const ListTile(
+              leading: Icon(Icons.group),
+              title: Text('Invite a contact'),
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          )
+        ]),
+      ),
     );
   }
 }
