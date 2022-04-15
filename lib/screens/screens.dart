@@ -13,3 +13,5 @@ export 'drawer_screens/my_credits.dart';
 export 'drawer_screens/my_stats.dart';
 export 'drawer_screens/settings.dart';
 export 'drawer_screens/shop_followed.dart';
+export 'drawer_screens/settings_profile.dart';
+export 'drawer_screens/settings_profile_image.dart';
