@@ -4,7 +4,17 @@ import 'package:provider/provider.dart';
 import 'package:seeme_app/screens/drawer_screens/settings.dart';
 import 'package:seeme_app/state/theme_manager.dart';
 
+import '../models/seeme_pages.dart';
+
 class DrawerWidget extends StatelessWidget {
+  static MaterialPage page() {
+    return MaterialPage(
+      name: SeeMePages.drawer,
+      key: ValueKey(SeeMePages.drawer),
+      child: const DrawerWidget(),
+    );
+  }
+
   const DrawerWidget({Key? key}) : super(key: key);
 
   @override

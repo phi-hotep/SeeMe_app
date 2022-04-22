@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:seeme_app/screens/drawer_screens/settings_profile_image.dart';
+import 'package:seeme_app/components/components.dart' show IconButtonWidget;
 
 class SettingsProfileInfo extends StatelessWidget {
   const SettingsProfileInfo({Key? key}) : super(key: key);
@@ -11,9 +12,9 @@ class SettingsProfileInfo extends StatelessWidget {
         body: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
-              snap: true,
+              snap: false,
               pinned: true,
-              floating: true,
+              floating: false,
               expandedHeight: 200,
               flexibleSpace: FlexibleSpaceBar(
                 background: Padding(
@@ -40,17 +41,15 @@ class SettingsProfileInfo extends StatelessWidget {
                 ),
               ),
               actions: [
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.photo_camera),
-                ),
+                IconButtonWidget(
+                    icon: const Icon(Icons.photo_camera), function: () {})
               ],
             ),
             // First
             SliverList(
               delegate: SliverChildBuilderDelegate(
                   (context, index) => Card(
-                        elevation: 50,
+                        elevation: 20,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
@@ -61,7 +60,7 @@ class SettingsProfileInfo extends StatelessWidget {
                                 ),
                                 const Text(
                                   'Business informations',
-                                  style: TextStyle(color: Colors.green),
+                                  style: TextStyle(color: Colors.yellow),
                                 ),
                                 const SizedBox(
                                   height: 10,
@@ -100,7 +99,7 @@ class SettingsProfileInfo extends StatelessWidget {
             SliverList(
               delegate: SliverChildBuilderDelegate(
                   (context, index) => Card(
-                        elevation: 50,
+                        elevation: 20,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: GestureDetector(
@@ -156,7 +155,7 @@ class SettingsProfileInfo extends StatelessWidget {
             SliverList(
               delegate: SliverChildBuilderDelegate(
                   (context, index) => Card(
-                        elevation: 50,
+                        elevation: 20,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
@@ -167,7 +166,7 @@ class SettingsProfileInfo extends StatelessWidget {
                                 ),
                                 const Text(
                                   'About and phone number',
-                                  style: TextStyle(color: Colors.green),
+                                  style: TextStyle(color: Colors.yellow),
                                 ),
                                 const SizedBox(
                                   height: 10,
@@ -195,7 +194,10 @@ class SettingsProfileInfo extends StatelessWidget {
       child: ListTile(
         leading: Icon(icon),
         title: Text(name),
-        trailing: const Icon(Icons.edit),
+        trailing: const Icon(
+          Icons.edit,
+          color: Colors.yellow,
+        ),
       ),
     );
   }

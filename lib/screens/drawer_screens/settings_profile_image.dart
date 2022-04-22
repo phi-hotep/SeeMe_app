@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:seeme_app/components/button.dart' show IconButtonWidget;
 
+import '../../models/seeme_pages.dart';
+
 class SettingsProfileImage extends StatelessWidget {
+  static MaterialPage page() {
+    return MaterialPage(
+      name: SeeMePages.settingsProfileImage,
+      key: ValueKey(SeeMePages.settingsProfileImage),
+      child: const SettingsProfileImage(),
+    );
+  }
+
   const SettingsProfileImage({Key? key}) : super(key: key);
 
   @override

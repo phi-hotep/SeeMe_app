@@ -5,9 +5,17 @@ import 'package:seeme_app/state/business_manager.dart';
 import 'package:seeme_app/components/components.dart' show DrawerMenuWidget;
 
 class Home extends StatefulWidget {
+  static MaterialPage page() {
+    return MaterialPage(
+      name: SeeMePages.home,
+      key: ValueKey(SeeMePages.home),
+      child: const Home(),
+    );
+  }
+
   final VoidCallback? drawerOpen;
-  bool? isDrawerOpen;
-  Home({Key? key, this.drawerOpen, this.isDrawerOpen}) : super(key: key);
+  final bool? isDrawerOpen;
+  const Home({Key? key, this.drawerOpen, this.isDrawerOpen}) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();

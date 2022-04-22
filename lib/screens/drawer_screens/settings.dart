@@ -1,7 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:seeme_app/screens/drawer_screens/settings_profile.dart';
 
+import '../../models/seeme_pages.dart';
+
 class Settings extends StatelessWidget {
+  static MaterialPage page() {
+    return MaterialPage(
+      name: SeeMePages.settings,
+      key: ValueKey(SeeMePages.settings),
+      child: const Settings(),
+    );
+  }
+
   const Settings({Key? key}) : super(key: key);
 
   @override
