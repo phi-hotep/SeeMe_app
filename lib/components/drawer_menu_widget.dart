@@ -1,3 +1,5 @@
+// Menu icon replace by person icon
+
 import 'package:flutter/material.dart';
 
 class DrawerMenuWidget extends StatelessWidget {
@@ -10,7 +12,7 @@ class DrawerMenuWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: Icon(isDrawerOpen ? Icons.arrow_back : Icons.menu),
+      icon: Icon(isDrawerOpen ? Icons.arrow_back : Icons.person),
       onPressed: onClicked,
     );
   }
