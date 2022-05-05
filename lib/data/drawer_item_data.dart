@@ -1,13 +1,16 @@
+//Change activity to favorite item
+// Remove settings item
+
 import 'package:flutter/material.dart';
 import 'package:seeme_app/models/models.dart' show DrawerItemModel;
 import 'package:seeme_app/screens/screens.dart';
 
 class DrawerItemsData {
-  static var activity = const DrawerItemModel(
-    title: 'My Activity',
-    subTitle: 'Browse your activities',
-    icon: Icon(Icons.local_activity),
-    drawerPage: MyActivity(),
+  static var favorites = const DrawerItemModel(
+    title: 'My favorites',
+    subTitle: 'Browse your favorites products',
+    icon: Icon(Icons.favorite),
+    drawerPage: MyFavorites(),
   );
   static var stats = const DrawerItemModel(
     title: 'My stats',
@@ -15,44 +18,31 @@ class DrawerItemsData {
     icon: Icon(Icons.insert_chart_outlined),
     drawerPage: MyStats(),
   );
-  static var pins = const DrawerItemModel(
+  static var shopFollowed = const DrawerItemModel(
     title: 'Shop followed',
     subTitle: 'Shops you are following',
     icon: Icon(Icons.follow_the_signs_sharp),
     drawerPage: ShopFollowed(),
   );
-  static var credit = const DrawerItemModel(
+  static var credits = const DrawerItemModel(
     title: 'My credits',
     subTitle: '',
     icon: Icon(Icons.monetization_on),
     drawerPage: MyCredits(),
   );
-  static var setting = const DrawerItemModel(
-    title: 'Settings',
-    subTitle: 'Privacy, security, etc.',
-    icon: Icon(Icons.settings),
-    drawerPage: Settings(),
-  );
+
   static var inviteFriend = const DrawerItemModel(
     title: 'Invite friends',
     subTitle: '',
     icon: Icon(Icons.mobile_friendly),
     drawerPage: InviteFriends(),
   );
-  static var help = const DrawerItemModel(
-    title: 'help',
-    subTitle: 'Terms and privacy policy, contact us, etc.',
-    icon: Icon(Icons.help),
-    drawerPage: Help(),
-  );
 
-  static final listItems = <DrawerItemModel>[
-    activity,
+  static final listItem = <DrawerItemModel>[
+    favorites,
     stats,
-    pins,
-    credit,
-    setting,
+    shopFollowed,
+    credits,
     inviteFriend,
-    help,
   ];
 }
