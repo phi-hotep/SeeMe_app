@@ -1,3 +1,8 @@
+// Page dans laquelle le bottomNavigationBar est implémenté
+
+// Update -->
+// change scale factor when drawer is open
+
 import 'package:flutter/material.dart';
 import 'package:seeme_app/screens/ads.dart';
 import 'package:seeme_app/screens/ambassador.dart';
@@ -34,9 +39,9 @@ class _MainHomeState extends State<MainHome> {
   // Methode permettant d'ouvrir le menu
   void openDrawer() {
     setState(() {
-      xOffset = 250;
-      yOffset = 150;
-      scaleFactor = 0.5;
+      xOffset = 360;
+      yOffset = 0;
+      scaleFactor = 0.2;
       isDrawerOpen = true;
     });
   }
@@ -52,7 +57,7 @@ class _MainHomeState extends State<MainHome> {
   }
 
   static List<Widget> pages = <Widget>[
-    Home(),
+    const Home(),
     const Shop(),
     const Adverts(),
     const Ambassador(),
@@ -70,6 +75,7 @@ class _MainHomeState extends State<MainHome> {
     });
   }
 
+// Construire la page principale -->
   Widget buildPage(TabManager tabManager, BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
@@ -150,6 +156,7 @@ class _MainHomeState extends State<MainHome> {
     );
   }
 
+// Construire la page de menu -->
   Widget buildDrawer() {
     return const SafeArea(child: DrawerWidget());
   }
