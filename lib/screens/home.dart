@@ -1,3 +1,5 @@
+// Switch button to business mode has been to Drawer page
+
 import 'package:flutter/material.dart';
 import 'package:seeme_app/models/models.dart';
 import 'package:provider/provider.dart';
@@ -34,6 +36,7 @@ class _HomeState extends State<Home>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        excludeHeaderSemantics: true,
         centerTitle: true,
         leading: IconButton(
           onPressed: () {},
@@ -69,58 +72,15 @@ class _HomeState extends State<Home>
       body: Padding(
         padding: const EdgeInsets.all(5),
         child: Center(
-          child: Stack(
-            children: <Widget>[
-              ListView.builder(
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (BuildContext context, int index) {
-                  return buildCard(Femme.listFemme[index]);
-                },
-                itemCount: Femme.listFemme.length,
-              ),
-              Positioned(
-                right: 20,
-                child: switchBusinessButton(),
-              ),
-            ],
+          child: ListView.builder(
+            physics: const BouncingScrollPhysics(),
+            itemBuilder: (BuildContext context, int index) {
+              return buildCard(Femme.listFemme[index]);
+            },
+            itemCount: Femme.listFemme.length,
           ),
         ),
       ),
-    );
-  }
-
-  Consumer<BusinessManager> switchBusinessButton() {
-    return Consumer<BusinessManager>(
-      builder: (context, businessManager, child) {
-        return Switch(
-          activeColor: Colors.green,
-          value: businessManager.isSwitchToBusinessMode,
-          onChanged: (val) {
-            Provider.of<BusinessManager>(context, listen: false).switchMode =
-                val;
-            var snackbarBusiness = const SnackBar(
-              backgroundColor: Colors.green,
-              content: Text(
-                'Business mode',
-                style: TextStyle(color: Colors.white),
-              ),
-              duration: Duration(seconds: 1),
-            );
-            var snackbarsimple = const SnackBar(
-              backgroundColor: Colors.red,
-              content:
-                  Text('Simple mode', style: TextStyle(color: Colors.white)),
-              duration: Duration(seconds: 1),
-            );
-            if (Provider.of<BusinessManager>(context, listen: false)
-                .isSwitchToBusinessMode) {
-              ScaffoldMessenger.of(context).showSnackBar(snackbarBusiness);
-            } else {
-              ScaffoldMessenger.of(context).showSnackBar(snackbarsimple);
-            }
-          },
-        );
-      },
     );
   }
 
