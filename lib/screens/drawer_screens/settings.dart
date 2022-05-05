@@ -1,5 +1,11 @@
+// Page de paramètres
+
+// update -->
+// wrap SafeArea on Scaffold
+// create settings items
+
 import 'package:flutter/material.dart';
-import 'package:seeme_app/screens/drawer_screens/settings_profile.dart';
+import 'package:seeme_app/screens/screens.dart';
 
 import '../../models/seeme_pages.dart';
 
@@ -16,96 +22,79 @@ class Settings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Settings'),
+    var list = const <Widget>[
+      SettingsAccount(),
+      SettingsNotification(),
+      SettingsClearStorage(),
+      SettingsLanguage(),
+      SettingsUserGuide(),
+      SettingsHelp()
+    ];
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('Settings'),
+        ),
+        body: SingleChildScrollView(
+          child: Card(
+            elevation: 1,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const SettingsProfileInfo(),
+                          ),
+                        );
+                      },
+                      child: const ListTile(
+                        leading: CircleAvatar(
+                          backgroundImage:
+                              AssetImage('assets/images/femme5.jpg'),
+                          radius: 30,
+                        ),
+                        title: Text('Hotep Industries'),
+                        subtitle: Text('Bomokin Hugues'),
+                      ),
+                    ),
+                    const Divider(),
+                    buildItem(context, list[0], 'Account', '', Icons.key),
+                    buildItem(context, list[1], 'Notifications', '',
+                        Icons.notifications),
+                    buildItem(
+                        context, list[2], 'Clear storage', '', Icons.storage),
+                    buildItem(context, list[3], 'Language', '', Icons.language),
+                    buildItem(context, list[4], 'User guide', '', Icons.map),
+                    buildItem(context, list[5], 'Help', '', Icons.help),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                  ]),
+            ),
+          ),
+        ),
       ),
-      body: SingleChildScrollView(
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const SettingsProfileInfo(),
-                ),
-              );
-            },
-            child: const ListTile(
-              leading: CircleAvatar(
-                backgroundImage: AssetImage('assets/images/femme5.jpg'),
-                radius: 30,
-              ),
-              title: Text('Hotep Industries'),
-              subtitle: Text('Bomokin Hugues'),
-            ),
-          ),
-          const Divider(),
-          InkWell(
-            onTap: () {},
-            child: const ListTile(
-              leading: Icon(Icons.store),
-              title: Text('Business Tools'),
-              subtitle: Text('Profile, catalog, etc.'),
-            ),
-          ),
-          const Divider(),
-          InkWell(
-            onTap: () {},
-            child: const ListTile(
-              leading: Icon(Icons.key),
-              title: Text('Acount'),
-              subtitle: Text('Privacy, security, etc.'),
-            ),
-          ),
-          const Divider(),
-          InkWell(
-            onTap: () {},
-            child: const ListTile(
-              leading: Icon(Icons.chat),
-              title: Text('Chats'),
-              subtitle: Text('Theme, wallpaper, etc.'),
-            ),
-          ),
-          const Divider(),
-          InkWell(
-            onTap: () {},
-            child: const ListTile(
-              leading: Icon(Icons.notifications),
-              title: Text('Notifications'),
-              subtitle: Text('Message, group, etc.'),
-            ),
-          ),
-          const Divider(),
-          InkWell(
-            onTap: () {},
-            child: const ListTile(
-              leading: Icon(Icons.storage),
-              title: Text('Storage and data'),
-              subtitle: Text('Network usage, auto-download, etc.'),
-            ),
-          ),
-          const Divider(),
-          InkWell(
-            onTap: () {},
-            child: const ListTile(
-              leading: Icon(Icons.help),
-              title: Text('Help'),
-              subtitle: Text('Help center, contact us, etc.'),
-            ),
-          ),
-          const Divider(),
-          InkWell(
-            onTap: () {},
-            child: const ListTile(
-              leading: Icon(Icons.group),
-              title: Text('Invite a contact'),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          )
-        ]),
+    );
+  }
+
+  Widget buildItem(BuildContext context, Widget widget, String title,
+      String subTitle, IconData icon) {
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => widget));
+      },
+      child: ListTile(
+        contentPadding:
+            const EdgeInsets.symmetric(vertical: 5.0, horizontal: 8.0),
+        leading: Icon(icon),
+        title: Text(title),
+        subtitle: Text(subTitle),
       ),
     );
   }
