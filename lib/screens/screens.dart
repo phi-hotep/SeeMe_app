@@ -1,3 +1,6 @@
+// update-->
+// add all settings items export
+
 export 'home.dart';
 export 'shop.dart';
 export 'ads.dart';
@@ -5,13 +8,20 @@ export 'ambassador.dart';
 export 'drawer.dart';
 
 // Drawer screens:-->
-
-export 'drawer_screens/help.dart';
-export 'drawer_screens/invite_friends.dart';
-export 'drawer_screens/my_activity.dart';
-export 'drawer_screens/my_credits.dart';
-export 'drawer_screens/my_stats.dart';
 export 'drawer_screens/settings.dart';
+export 'drawer_screens/business.dart';
+export 'drawer_screens/my_favorites.dart';
+export 'drawer_screens/my_stats.dart';
 export 'drawer_screens/shop_followed.dart';
-export 'drawer_screens/settings_profile.dart';
-export 'drawer_screens/settings_profile_image.dart';
+export 'drawer_screens/my_credits.dart';
+export 'drawer_screens/invite_friends.dart';
+
+// Settings page -->
+export 'drawer_screens/settings/settings_profile.dart';
+export 'drawer_screens/settings/settings_profile_image.dart';
+export 'drawer_screens/settings/settings_account.dart';
+export 'drawer_screens/settings/settings_notifications.dart';
+export 'drawer_screens/settings/settings_clearstorage.dart';
+export 'drawer_screens/settings/settings_language.dart';
+export 'drawer_screens/settings/settings_userguide.dart';
+export 'drawer_screens/settings/settings_help.dart';
