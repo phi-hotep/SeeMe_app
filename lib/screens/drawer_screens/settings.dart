@@ -1,12 +1,7 @@
 // Page de paramètres
 
-// update -->
-// wrap SafeArea on Scaffold
-// create settings items
-
 import 'package:flutter/material.dart';
 import 'package:seeme_app/screens/screens.dart';
-
 import '../../models/seeme_pages.dart';
 
 class Settings extends StatelessWidget {
