@@ -1,16 +1,17 @@
-// Page de menu
+// Page de menu de l'utilisateur
 
-// Update -->
-// settings items has been replaced by an iconbutton
-// activity item has been replaced by favorites
-// Switch button of business  mode has been added
+// New update 21/05/2022-->
+// 1) change business button with SwitchListile widget
+// 2) Application du modèle MVVM
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:seeme_app/screens/screens.dart';
-import 'package:seeme_app/state/theme_manager.dart';
 import '../models/seeme_pages.dart';
-import '../state/business_manager.dart';
+import 'package:seeme_app/state/state.dart';
+import 'package:seeme_app/models/models.dart';
+import 'package:seeme_app/data/data.dart';
+import 'package:seeme_app/components/components.dart';
 
 class DrawerWidget extends StatelessWidget {
   static MaterialPage page() {
@@ -25,7 +26,7 @@ class DrawerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // List of pages to navigate to -->
+    // Liste des pages -->
     var list = const <Widget>[
       Business(),
       MyFavorites(),
@@ -69,28 +70,34 @@ class DrawerWidget extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(children: [
-                          buildDrawerItem(
-                            context,
-                            list[0],
-                            Icons.business,
-                            'Business mode',
-                            switchBusiness: switchBusinessButton(),
-                          ),
+                          buildSwitchBusinessButton(),
                           const Divider(),
                           buildDrawerItem(
-                              context, list[1], Icons.favorite, 'My favotites'),
+                              context,
+                              list[1],
+                              DrawerData.listDrawerItem[1].icon,
+                              DrawerData.listDrawerItem[1].title),
                           buildDrawerItem(
-                              context, list[2], Icons.bar_chart, 'My stats'),
+                              context,
+                              list[2],
+                              DrawerData.listDrawerItem[2].icon,
+                              DrawerData.listDrawerItem[2].title),
                           buildDrawerItem(
                               context,
                               list[3],
-                              Icons.store_mall_directory_outlined,
-                              'Shop followed'),
-                          buildDrawerItem(context, list[4],
-                              Icons.attach_money_rounded, 'My credits'),
+                              DrawerData.listDrawerItem[3].icon,
+                              DrawerData.listDrawerItem[3].title),
+                          buildDrawerItem(
+                              context,
+                              list[4],
+                              DrawerData.listDrawerItem[4].icon,
+                              DrawerData.listDrawerItem[4].title),
                           const Divider(),
-                          buildDrawerItem(context, list[5], Icons.person_add,
-                              'Invite friend'),
+                          buildDrawerItem(
+                              context,
+                              list[5],
+                              DrawerData.listDrawerItem[5].icon,
+                              DrawerData.listDrawerItem[5].title),
                           const SizedBox(
                             height: 20,
                           ),
@@ -111,14 +118,57 @@ class DrawerWidget extends StatelessWidget {
     );
   }
 
+// Construire le button switch pour passer en mode business -->
+
+  Consumer<BusinessManager> buildSwitchBusinessButton() {
+    return Consumer<BusinessManager>(
+      builder: (context, buisnessManager, child) {
+        return SwitchListTile.adaptive(
+          contentPadding:
+              const EdgeInsets.symmetric(vertical: 5.0, horizontal: 8.0),
+          title: Text(DrawerData.listDrawerItem[0].title),
+          secondary: DrawerData.listDrawerItem[0].icon,
+          value: buisnessManager.isSwitchToBusinessMode,
+          onChanged: (val) {
+            Provider.of<BusinessManager>(context, listen: false).switchMode =
+                val;
+            var snackbarBusiness = const SnackBar(
+              backgroundColor: Colors.green,
+              content: Text(
+                'Business mode',
+                style: TextStyle(color: Colors.white),
+              ),
+              duration: Duration(milliseconds: 700),
+            );
+            var snackbarsimple = const SnackBar(
+              backgroundColor: Colors.red,
+              content: Text(
+                'Simple mode',
+                style: TextStyle(color: Colors.white),
+              ),
+              duration: Duration(milliseconds: 700),
+            );
+            if (Provider.of<BusinessManager>(context, listen: false)
+                .isSwitchToBusinessMode) {
+              ScaffoldMessenger.of(context).showSnackBar(snackbarBusiness);
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(snackbarsimple);
+            }
+          },
+        );
+      },
+    );
+  }
+
 // Construire le profile en tête de la page Drawer -->
+
   Widget buildHeaderProfile(BuildContext context) {
     return Positioned(
       top: 50,
       left: 10,
       child: Container(
         height: 100,
-        width: 350,
+        width: 250,
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(
             Radius.circular(10),
@@ -127,42 +177,26 @@ class DrawerWidget extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const SettingsProfileInfo(),
-                    ),
-                  );
-                },
-                child: const CircleAvatar(
-                  backgroundImage: AssetImage('assets/images/femme5.jpg'),
-                  radius: 50,
+          child: GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SettingsProfileInfo(),
                 ),
+              );
+            },
+            child: Row(children: [
+              const CustomCirleAvatar(img: 'assets/images/femme5.jpg', rad: 50),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  Text('Hotep Industries'),
+                  Text('Bomokin Hugues '),
+                ],
               ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const SettingsProfileInfo(),
-                    ),
-                  );
-                },
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text('Hotep Industries'),
-                    Text('Bomokin Hugues '),
-                  ],
-                ),
-              ),
-            ],
+            ]),
           ),
         ),
       ),
@@ -170,21 +204,30 @@ class DrawerWidget extends StatelessWidget {
   }
 
 // Construire la liste des boutons à l'en-tête de la page Drawer -->
+
   Widget buildActionButtons(BuildContext context) {
     return Row(
       children: [
-        AnimatedOpacity(
-          opacity: 1.0,
-          duration: const Duration(milliseconds: 500),
-          child: Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.bottomLeft,
-                  end: Alignment.topRight,
-                  colors: [Colors.red, Colors.blue]),
-            ),
-            child: const Text('SeeMe Pro'),
-          ),
+        // if ((Provider.of<BusinessManager>(context, listen: false)
+        //     .isSwitchToBusinessMode))
+        Container(
+          constraints: const BoxConstraints.expand(width: 70, height: 15),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                for (double i = 1; i < 5; i++)
+                  BoxShadow(
+                    color: Colors.blueAccent.shade700,
+                    blurRadius: 3 * i,
+                  ),
+                for (double i = 1; i < 5; i++)
+                  BoxShadow(
+                      spreadRadius: -1,
+                      color: Colors.blueAccent.shade700,
+                      blurRadius: 3 * i,
+                      blurStyle: BlurStyle.outer),
+              ]),
+          child: const Text('SeeMe pro'),
         ),
         IconButton(
           onPressed: () {
@@ -195,10 +238,7 @@ class DrawerWidget extends StatelessWidget {
               ),
             );
           },
-          icon: const Icon(
-            Icons.settings,
-            size: 30,
-          ),
+          icon: DrawerData.listDrawerItem[6].icon,
         ),
         IconButton(
           onPressed: () {
@@ -216,9 +256,13 @@ class DrawerWidget extends StatelessWidget {
   }
 
 // Construire les différents éléments de Drawer -->
+
   Widget buildDrawerItem(
-      BuildContext context, Widget widget, IconData icon, String text,
-      {Widget? switchBusiness}) {
+    BuildContext context,
+    Widget widget,
+    Widget icon,
+    String text,
+  ) {
     return InkWell(
       onTap: () {
         Navigator.push(
@@ -229,46 +273,9 @@ class DrawerWidget extends StatelessWidget {
       child: ListTile(
         contentPadding:
             const EdgeInsets.symmetric(vertical: 5.0, horizontal: 8.0),
-        leading: Icon(icon),
+        leading: icon,
         title: Text(text),
-        trailing: switchBusiness,
       ),
-    );
-  }
-
-//  Switch button to business mode -->
-  Consumer<BusinessManager> switchBusinessButton() {
-    return Consumer<BusinessManager>(
-      builder: (context, businessManager, child) {
-        return Switch(
-          activeColor: Colors.green,
-          value: businessManager.isSwitchToBusinessMode,
-          onChanged: (val) {
-            Provider.of<BusinessManager>(context, listen: false).switchMode =
-                val;
-            var snackbarBusiness = const SnackBar(
-              backgroundColor: Colors.green,
-              content: Text(
-                'Business mode',
-                style: TextStyle(color: Colors.white),
-              ),
-              duration: Duration(seconds: 1),
-            );
-            var snackbarsimple = const SnackBar(
-              backgroundColor: Colors.red,
-              content:
-                  Text('Simple mode', style: TextStyle(color: Colors.white)),
-              duration: Duration(seconds: 1),
-            );
-            if (Provider.of<BusinessManager>(context, listen: false)
-                .isSwitchToBusinessMode) {
-              ScaffoldMessenger.of(context).showSnackBar(snackbarBusiness);
-            } else {
-              ScaffoldMessenger.of(context).showSnackBar(snackbarsimple);
-            }
-          },
-        );
-      },
     );
   }
 }
