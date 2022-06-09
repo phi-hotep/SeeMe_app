@@ -17,11 +17,17 @@ export 'drawer_screens/my_credits.dart';
 export 'drawer_screens/invite_friends.dart';
 
 // Settings page -->
-export 'drawer_screens/settings_screens/settings_profile.dart';
-export 'drawer_screens/settings_screens/settings_profile_image.dart';
+export 'drawer_screens/settings_screens/settings_profile_info.dart';
+export 'drawer_screens/settings_screens/settings_profile_info_image.dart';
 export 'drawer_screens/settings_screens/settings_account.dart';
 export 'drawer_screens/settings_screens/settings_notifications.dart';
 export 'drawer_screens/settings_screens/settings_clearstorage.dart';
 export 'drawer_screens/settings_screens/settings_language.dart';
 export 'drawer_screens/settings_screens/settings_userguide.dart';
 export 'drawer_screens/settings_screens/settings_help.dart';
+
+// Starting screens -->
+
+export 'start_screens/splash_screen.dart';
+export 'start_screens/onboarding_screen.dart';
+export 'start_screens/login_screen.dart';
