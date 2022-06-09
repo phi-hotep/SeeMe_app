@@ -1,8 +1,13 @@
 // Page de paramètres
 
+// New update 21/05/2022-->
+// 1) add subtitles under items
+
 import 'package:flutter/material.dart';
+import 'package:seeme_app/data/data.dart';
 import 'package:seeme_app/screens/screens.dart';
 import '../../models/seeme_pages.dart';
+import 'package:seeme_app/models/models.dart';
 
 class Settings extends StatelessWidget {
   static MaterialPage page() {
@@ -38,34 +43,49 @@ class Settings extends StatelessWidget {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const SettingsProfileInfo(),
-                          ),
-                        );
-                      },
-                      child: const ListTile(
-                        leading: CircleAvatar(
-                          backgroundImage:
-                              AssetImage('assets/images/femme5.jpg'),
-                          radius: 30,
-                        ),
-                        title: Text('Hotep Industries'),
-                        subtitle: Text('Bomokin Hugues'),
-                      ),
-                    ),
-                    const Divider(),
-                    buildItem(context, list[0], 'Account', '', Icons.key),
-                    buildItem(context, list[1], 'Notifications', '',
-                        Icons.notifications),
                     buildItem(
-                        context, list[2], 'Clear storage', '', Icons.storage),
-                    buildItem(context, list[3], 'Language', '', Icons.language),
-                    buildItem(context, list[4], 'User guide', '', Icons.map),
-                    buildItem(context, list[5], 'Help', '', Icons.help),
+                        context,
+                        const SettingsProfileInfo(),
+                        SettingsData.listSettingsItem[0].title,
+                        SettingsData.listSettingsItem[0].subTitle,
+                        SettingsData.listSettingsItem[0].icon),
+                    const Divider(),
+                    buildItem(
+                        context,
+                        list[0],
+                        SettingsData.listSettingsItem[1].title,
+                        SettingsData.listSettingsItem[1].subTitle,
+                        SettingsData.listSettingsItem[1].icon),
+                    buildItem(
+                        context,
+                        list[1],
+                        SettingsData.listSettingsItem[2].title,
+                        SettingsData.listSettingsItem[2].subTitle,
+                        SettingsData.listSettingsItem[2].icon),
+                    buildItem(
+                        context,
+                        list[2],
+                        SettingsData.listSettingsItem[3].title,
+                        SettingsData.listSettingsItem[3].subTitle,
+                        SettingsData.listSettingsItem[3].icon),
+                    buildItem(
+                        context,
+                        list[3],
+                        SettingsData.listSettingsItem[4].title,
+                        SettingsData.listSettingsItem[4].subTitle,
+                        SettingsData.listSettingsItem[4].icon),
+                    buildItem(
+                        context,
+                        list[4],
+                        SettingsData.listSettingsItem[5].title,
+                        SettingsData.listSettingsItem[5].subTitle,
+                        SettingsData.listSettingsItem[5].icon),
+                    buildItem(
+                        context,
+                        list[5],
+                        SettingsData.listSettingsItem[6].title,
+                        SettingsData.listSettingsItem[6].subTitle,
+                        SettingsData.listSettingsItem[6].icon),
                     const SizedBox(
                       height: 20,
                     ),
@@ -78,7 +98,7 @@ class Settings extends StatelessWidget {
   }
 
   Widget buildItem(BuildContext context, Widget widget, String title,
-      String subTitle, IconData icon) {
+      String subTitle, Widget icon) {
     return InkWell(
       onTap: () {
         Navigator.push(
@@ -87,9 +107,12 @@ class Settings extends StatelessWidget {
       child: ListTile(
         contentPadding:
             const EdgeInsets.symmetric(vertical: 5.0, horizontal: 8.0),
-        leading: Icon(icon),
+        leading: icon,
         title: Text(title),
-        subtitle: Text(subTitle),
+        subtitle: Text(
+          subTitle,
+          style: const TextStyle(fontStyle: FontStyle.italic),
+        ),
       ),
     );
   }
