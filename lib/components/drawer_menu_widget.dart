@@ -1,4 +1,6 @@
-// Menu icon replace by person icon
+// Widget personnalisé utilisé dans le fichier home.dart permettant
+// alternativement de changer l'icon arrow pour l'icon person si
+// l'utilisateur ouvre ou ferme le drawer.
 
 import 'package:flutter/material.dart';
 
