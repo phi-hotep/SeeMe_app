@@ -29,7 +29,7 @@ class _MainHomeState extends State<MainHome> {
   late bool isDrawerOpen;
   bool isDragging = false;
 
-// Initialiser les la fnct closeDrawer
+// Initialiser les la fonction closeDrawer
   @override
   void initState() {
     super.initState();
