@@ -1,7 +1,7 @@
 // La page d'aide
 
-// update -->
-// New file to display help
+// New update 21/05/2022-->
+// 1) Wrap card widget on items
 
 import 'package:flutter/material.dart';
 
@@ -24,18 +24,20 @@ class SettingsHelp extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Help'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 10),
-            buildItem(Icons.privacy_tip, 'Privacy policy'),
-            buildItem(Icons.file_open, 'Terms'),
-            buildItem(Icons.info, 'App information'),
-            buildItem(Icons.rate_review, 'Rate the app'),
-            buildItem(Icons.contact_page, 'Contact us'),
-          ],
+      body: Card(
+        elevation: 1,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              buildItem(Icons.privacy_tip, 'Privacy policy'),
+              buildItem(Icons.file_open, 'Terms'),
+              buildItem(Icons.info, 'App information'),
+              buildItem(Icons.rate_review, 'Rate the app'),
+              buildItem(Icons.contact_page, 'Contact us'),
+            ],
+          ),
         ),
       ),
     );
