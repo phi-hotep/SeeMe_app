@@ -29,15 +29,16 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  google_fonts: ^2.3.1
-  provider: ^6.0.2
-  shared_preferences: ^2.0.15
-  smooth_page_indicator: ^1.0.0+2
-
+  google_fonts: ^2.3.1 # Pour implémenter les styles pour le text
+  provider: ^6.0.2 # Pour la gestion des états dans l'application
+  shared_preferences: ^2.0.15 # Pour implémenter de simple sauvergardes comme les états de l'app
+  smooth_page_indicator: ^1.0.0+2 # Pour implémenter l'onboarding apres l'authentification
+  go_router: ^3.1.1 # Pour implémenter la navigation dans l'application
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  
   
   
   
