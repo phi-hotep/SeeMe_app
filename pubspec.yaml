@@ -34,7 +34,11 @@ dependencies:
   shared_preferences: ^2.0.15 # Pour implémenter de simple sauvergardes comme les états de l'app
   smooth_page_indicator: ^1.0.0+2 # Pour implémenter l'onboarding apres l'authentification
   go_router: ^3.1.1 # Pour implémenter la navigation dans l'application
-
+  cached_network_image: ^3.2.0 # Permet de télécharger et mettre en cache les images qui seront utilisées dans l'app
+  flutter_slidable: ^1.3.0 # Permet de créer un widget qui permet à l'utilisateur de faire glisser une carte vers la gauche et vers la droite pour effectuer différentes actions, comme la suppression d'un élément enregistrée.
+  flutter_svg: ^1.0.3 # Permet de chargez des images SVG sans avoir besoin d'utiliser un programme pour les convertir en fichiers vectoriels
+  json_annotation: ^4.5.0
+  
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -46,6 +50,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner: ^2.1.11
+  json_serializable: ^6.2.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
