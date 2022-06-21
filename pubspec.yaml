@@ -38,10 +38,12 @@ dependencies:
   flutter_slidable: ^1.3.0 # Permet de créer un widget qui permet à l'utilisateur de faire glisser une carte vers la gauche et vers la droite pour effectuer différentes actions, comme la suppression d'un élément enregistrée.
   flutter_svg: ^1.0.3 # Permet de chargez des images SVG sans avoir besoin d'utiliser un programme pour les convertir en fichiers vectoriels
   json_annotation: ^4.5.0
+  http: ^0.13.4
   
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  
   
   
   
