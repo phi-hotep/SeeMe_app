@@ -1,3 +1,6 @@
+// Le fichier dans lequel le thème de l'application est implémenté
+
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -60,6 +63,14 @@ class SeeMeTheme {
 
   static ThemeData light() {
     return ThemeData(
+      pageTransitionsTheme: const PageTransitionsTheme(builders: {
+        TargetPlatform.android: SharedAxisPageTransitionsBuilder(
+            //fillColor: , ici le thème de couleur de SeeMe
+            transitionType: SharedAxisTransitionType.vertical),
+        TargetPlatform.iOS: SharedAxisPageTransitionsBuilder(
+            //fillColor: , ici le thème de couleur de SeeMe
+            transitionType: SharedAxisTransitionType.horizontal)
+      }),
       brightness: Brightness.light,
       checkboxTheme: CheckboxThemeData(
         fillColor: MaterialStateColor.resolveWith(
@@ -86,6 +97,14 @@ class SeeMeTheme {
 
   static ThemeData dark() {
     return ThemeData(
+      pageTransitionsTheme: const PageTransitionsTheme(builders: {
+        TargetPlatform.android: SharedAxisPageTransitionsBuilder(
+            //fillColor: , ici le thème de couleur de SeeMe
+            transitionType: SharedAxisTransitionType.vertical),
+        TargetPlatform.iOS: SharedAxisPageTransitionsBuilder(
+            //fillColor: , ici le thème de couleur de SeeMe
+            transitionType: SharedAxisTransitionType.horizontal)
+      }),
       brightness: Brightness.dark,
       appBarTheme: AppBarTheme(
         foregroundColor: Colors.white,
