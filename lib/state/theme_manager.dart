@@ -1,3 +1,5 @@
+// Le gestionnaire du thème de l'application
+
 import 'package:flutter/material.dart';
 
 class ThemeManager extends ChangeNotifier {
@@ -5,8 +7,16 @@ class ThemeManager extends ChangeNotifier {
 
   bool get getTheme => _theme;
 
+// Passer du theme light à dark et vice-versa -->
   void changeTheme() {
-    _theme = !_theme; // passer du theme light à dark et vice-versa
+    _theme = !_theme;
+
+    notifyListeners();
+  }
+
+// Theme par defaut -->
+  void initialTheme() {
+    _theme = false;
     notifyListeners();
   }
 }
