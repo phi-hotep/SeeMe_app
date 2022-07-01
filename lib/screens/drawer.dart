@@ -1,12 +1,11 @@
 // Page de menu de l'utilisateur
 
-// New update 21/05/2022-->
-// 1) change business button with SwitchListile widget
-// 2) Application du modèle MVVM
+//2- Move 'delete account' from here to settings_account page
 
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:seeme_app/screens/screens.dart';
 import '../models/seeme_pages.dart';
 import 'package:seeme_app/state/state.dart';
 import 'package:seeme_app/models/models.dart';
@@ -14,26 +13,34 @@ import 'package:seeme_app/data/data.dart';
 import 'package:seeme_app/components/components.dart';
 
 class DrawerWidget extends StatelessWidget {
-  static MaterialPage page() {
-    return MaterialPage(
-      name: SeeMePages.drawer,
-      key: ValueKey(SeeMePages.drawer),
-      child: const DrawerWidget(),
-    );
+  static CustomTransitionPage page() {
+    return CustomTransitionPage(
+        key: ValueKey(SeeMePages.drawer),
+        name: SeeMePages.drawer,
+        child: const DrawerWidget(),
+        transitionDuration: const Duration(milliseconds: 300),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          return SharedAxisTransition(
+            transitionType: SharedAxisTransitionType.horizontal,
+            animation: animation,
+            secondaryAnimation: secondaryAnimation,
+            child: child,
+          );
+        });
   }
 
   const DrawerWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // Liste des pages -->
-    var list = const <Widget>[
-      Business(),
-      MyFavorites(),
-      MyStats(),
-      ShopFollowed(),
-      MyCredits(),
-      InviteFriends()
+    // Liste des noms des pages -->
+    var list = <String>[
+      SeeMePages.business,
+      SeeMePages.myFavorites,
+      SeeMePages.myStats,
+      SeeMePages.shopFollowed,
+      SeeMePages.myCredits,
+      SeeMePages.inviteFriend
     ];
     return Scaffold(
       body: CustomScrollView(
@@ -99,14 +106,7 @@ class DrawerWidget extends StatelessWidget {
                               DrawerData.listDrawerItem[5].icon,
                               DrawerData.listDrawerItem[5].title),
                           const SizedBox(
-                            height: 20,
-                          ),
-                          ElevatedButton(
-                            onPressed: () {},
-                            child: const Text('Logout'),
-                          ),
-                          const SizedBox(
-                            height: 20,
+                            height: 40,
                           ),
                         ]),
                       ),
@@ -179,12 +179,14 @@ class DrawerWidget extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: GestureDetector(
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const SettingsProfileInfo(),
-                ),
-              );
+              // Ici on recupère l'index courant:
+              // home|shop|ads|ambassador -->
+              final currentTab =
+                  Provider.of<AppStateManager>(context, listen: false)
+                      .getSelectedTab
+                      .toString();
+              context.goNamed(SeeMePages.settingsProfile,
+                  params: {'tab': currentTab});
             },
             child: Row(children: [
               const CustomCirleAvatar(img: 'assets/images/femme5.jpg', rad: 50),
@@ -231,12 +233,13 @@ class DrawerWidget extends StatelessWidget {
         ),
         IconButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const Settings(),
-              ),
-            );
+            // Ici on recupère l'index courant:
+            // home|shop|ads|ambassador -->
+            final currentTab =
+                Provider.of<AppStateManager>(context, listen: false)
+                    .getSelectedTab
+                    .toString();
+            context.goNamed(SeeMePages.settings, params: {'tab': currentTab});
           },
           icon: DrawerData.listDrawerItem[6].icon,
         ),
@@ -259,16 +262,18 @@ class DrawerWidget extends StatelessWidget {
 
   Widget buildDrawerItem(
     BuildContext context,
-    Widget widget,
+    String route,
     Widget icon,
     String text,
   ) {
     return InkWell(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => widget),
-        );
+        // Ici on recupère l'index courant:
+        // home|shop|ads|ambassador -->
+        final currentTab = Provider.of<AppStateManager>(context, listen: false)
+            .getSelectedTab
+            .toString();
+        context.goNamed(route, params: {'tab': currentTab});
       },
       child: ListTile(
         contentPadding:
