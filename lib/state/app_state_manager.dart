@@ -1,7 +1,10 @@
+// Gestionnaire des états de l'application
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:seeme_app/models/models.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SeeMeTab {
   static const int home = 0;
@@ -11,6 +14,9 @@ class SeeMeTab {
 }
 
 class AppStateManager extends ChangeNotifier {
+  SharedPreferences prefs;
+  AppStateManager(this.prefs);
+
   bool _initialized = false;
   bool _loggedIn = false;
   bool _onboardingComplete = false;
@@ -22,12 +28,10 @@ class AppStateManager extends ChangeNotifier {
   bool get isOnboardingComplete => _onboardingComplete;
   int get getSelectedTab => _selectedTab;
 
+// Initialisation de l'app -->
   void initializeApp() async {
-    _loggedIn = await _appCache.isUserLoggedIn();
-    _onboardingComplete = await _appCache.didCompleteOnboarding();
-
     Timer(
-      const Duration(milliseconds: 2000),
+      const Duration(milliseconds: 10000),
       () {
         _initialized = true;
         notifyListeners();
@@ -35,29 +39,34 @@ class AppStateManager extends ChangeNotifier {
     );
   }
 
-  void login(String userEmail, String password) async {
+// L'ultilisateur s'est loggé -->
+  void loginOk(String userEmail, String password) async {
     _loggedIn = true;
-    await _appCache.cacheUser();
+    await _appCache.cacheUserLogin();
     notifyListeners();
   }
 
-  void completeOnboarding() async {
+// Lutilisateur a fini l'onboarding -->
+  void completeOnboardingOk() async {
     _onboardingComplete = true;
-    await _appCache.completeOnboarding();
+    await _appCache.cacheUserOnboarding();
     notifyListeners();
   }
 
-  void goToTab(index) {
-    _selectedTab = index;
-    notifyListeners();
-  }
-
+// Deconnexion de l'utilisateur -->
   void logout() async {
     _initialized = false;
     _selectedTab = 0;
-    await _appCache.invalidate();
-
     initializeApp();
+    await _appCache.disconnection();
+    _loggedIn = await _appCache.isUserLoggedIn();
+    _onboardingComplete = await _appCache.isOnboardingCompleted();
+    notifyListeners();
+  }
+
+// Changement d'onglet de navigation -->
+  void goToTab(index) {
+    _selectedTab = index;
     notifyListeners();
   }
 }
