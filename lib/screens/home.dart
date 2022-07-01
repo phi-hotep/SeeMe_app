@@ -1,10 +1,10 @@
-// Switch button to business mode has been to Drawer page
+// La page d'acceuil
 
 import 'package:flutter/material.dart';
 import 'package:seeme_app/models/models.dart';
-import 'package:provider/provider.dart';
-import 'package:seeme_app/state/business_manager.dart';
-import 'package:seeme_app/components/components.dart' show DrawerMenuWidget;
+
+final _pageStorageBucketHome = PageStorageBucket();
+const _homePageStorageKey = PageStorageKey<String>('home');
 
 class Home extends StatefulWidget {
   static MaterialPage page() {
@@ -16,68 +16,61 @@ class Home extends StatefulWidget {
   }
 
   final VoidCallback? drawerOpen;
-  final bool? isDrawerOpen;
-  const Home({Key? key, this.drawerOpen, this.isDrawerOpen}) : super(key: key);
+  // final bool? isDrawerOpen;
+  const Home({Key? key, this.drawerOpen}) : super(key: key);
 
   @override
   State<Home> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home>
-    with AutomaticKeepAliveClientMixin, SingleTickerProviderStateMixin {
-  // ici on redefinit la fonction en retournant la valeur true
-  //pour maintenir l'état du contenu de la page
-  //en cas de navigation vers une autre
-  @override
-  // TODO: implement wantKeepAlive
-  bool get wantKeepAlive => true;
-
+class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        excludeHeaderSemantics: true,
-        centerTitle: true,
-        leading: IconButton(
-          onPressed: () {},
-          icon: DrawerMenuWidget(
-            onClicked: widget.drawerOpen,
-            isDrawerOpen: widget.isDrawerOpen!,
+    return PageStorage(
+      bucket: _pageStorageBucketHome,
+      child: Scaffold(
+        appBar: AppBar(
+          excludeHeaderSemantics: true,
+          centerTitle: true,
+          leading: IconButton(
+            onPressed: widget.drawerOpen,
+            icon: const Icon(Icons.person),
           ),
+          title: const Text('SeeMe'),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.notifications,
+                size: 35,
+              ),
+            ),
+            IconButton(
+              onPressed: () {
+                // Methode de Flutter pour implémenter la page de recherche
+                showSearch(
+                  context: context,
+                  delegate: MySearchDelegate(),
+                );
+              },
+              icon: const Icon(
+                Icons.search,
+                size: 35,
+              ),
+            ),
+          ],
         ),
-        title: const Text('SeeMe'),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.notifications,
-              size: 35,
+        body: Padding(
+          padding: const EdgeInsets.all(5),
+          child: Center(
+            child: ListView.builder(
+              key: _homePageStorageKey,
+              physics: const BouncingScrollPhysics(),
+              itemBuilder: (BuildContext context, int index) {
+                return buildCard(Femme.listFemme[index]);
+              },
+              itemCount: Femme.listFemme.length,
             ),
-          ),
-          IconButton(
-            onPressed: () {
-              // Methode de Flutter pour implémenter la page de recherche
-              showSearch(
-                context: context,
-                delegate: MySearchDelegate(),
-              );
-            },
-            icon: const Icon(
-              Icons.search,
-              size: 35,
-            ),
-          ),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(5),
-        child: Center(
-          child: ListView.builder(
-            physics: const BouncingScrollPhysics(),
-            itemBuilder: (BuildContext context, int index) {
-              return buildCard(Femme.listFemme[index]);
-            },
-            itemCount: Femme.listFemme.length,
           ),
         ),
       ),
@@ -138,7 +131,9 @@ class MySearchDelegate extends SearchDelegate {
   }
 
   @override
-  Widget? buildLeading(BuildContext context) {} // revenir en arrière
+  Widget? buildLeading(BuildContext context) {
+    return null;
+  } // revenir en arrière
 
   @override
   Widget buildResults(BuildContext context) {
