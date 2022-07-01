@@ -7,6 +7,7 @@ class BusinessManager extends ChangeNotifier {
   set switchMode(bool value) {
     _isSwitchToBusinessMode =
         value; // Passer du mode simple au mode business et vice-versa
+
     notifyListeners();
   }
 }
