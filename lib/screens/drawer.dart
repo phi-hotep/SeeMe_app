@@ -1,7 +1,5 @@
 // Page de menu de l'utilisateur
 
-//2- Move 'delete account' from here to settings_account page
-
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
