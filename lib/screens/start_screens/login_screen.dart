@@ -1,7 +1,9 @@
 // Page de login
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:seeme_app/models/models.dart';
+import 'package:seeme_app/state/app_state_manager.dart';
 
 class LoginScreen extends StatefulWidget {
   static MaterialPage page() {
@@ -94,7 +96,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 50,
                       ),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          // L'utilisateur a réussi à se logger -->
+                          Provider.of<AppStateManager>(context, listen: false)
+                              .loginOk('userEmail', 'password');
+                        },
                         child: const Text('Login'),
                       ),
                       const SizedBox(

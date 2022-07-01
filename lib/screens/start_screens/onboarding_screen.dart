@@ -1,7 +1,9 @@
 // La page du onboarding
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:seeme_app/models/models.dart';
+import 'package:seeme_app/state/app_state_manager.dart';
 
 class OnboardingScreen extends StatelessWidget {
   static MaterialPage page() {
@@ -16,6 +18,17 @@ class OnboardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            // L'utilisateur a fini l'onboarding -->
+            Provider.of<AppStateManager>(context, listen: false)
+                .completeOnboardingOk();
+          },
+          child: const Text('Skip'),
+        ),
+      ),
+    );
   }
 }
