@@ -1,7 +1,5 @@
 // La page boutique de l'utilisateur
 
-//Update: add leading icon on appbar to navigate to drawer
-
 import 'package:flutter/material.dart';
 import 'package:seeme_app/models/seeme_pages.dart';
 
