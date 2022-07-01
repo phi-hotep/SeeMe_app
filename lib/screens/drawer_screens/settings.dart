@@ -1,11 +1,10 @@
 // Page de paramètres
 
-// New update 21/05/2022-->
-// 1) add subtitles under items
-
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:seeme_app/data/data.dart';
-import 'package:seeme_app/screens/screens.dart';
+import 'package:seeme_app/state/app_state_manager.dart';
 import '../../models/seeme_pages.dart';
 import 'package:seeme_app/models/models.dart';
 
@@ -22,13 +21,14 @@ class Settings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var list = const <Widget>[
-      SettingsAccount(),
-      SettingsNotification(),
-      SettingsClearStorage(),
-      SettingsLanguage(),
-      SettingsUserGuide(),
-      SettingsHelp()
+    var list = <String>[
+      SeeMePages.settingsProfile,
+      SeeMePages.settingsAccount,
+      SeeMePages.settingsNotification,
+      SeeMePages.settingsClearStorage,
+      SeeMePages.settingsLanguage,
+      SeeMePages.settingsUserGuide,
+      SeeMePages.settingsHelp
     ];
     return SafeArea(
       child: Scaffold(
@@ -45,44 +45,44 @@ class Settings extends StatelessWidget {
                   children: [
                     buildItem(
                         context,
-                        const SettingsProfileInfo(),
+                        list[0],
                         SettingsData.listSettingsItem[0].title,
                         SettingsData.listSettingsItem[0].subTitle,
                         SettingsData.listSettingsItem[0].icon),
                     const Divider(),
                     buildItem(
                         context,
-                        list[0],
+                        list[1],
                         SettingsData.listSettingsItem[1].title,
                         SettingsData.listSettingsItem[1].subTitle,
                         SettingsData.listSettingsItem[1].icon),
                     buildItem(
                         context,
-                        list[1],
+                        list[2],
                         SettingsData.listSettingsItem[2].title,
                         SettingsData.listSettingsItem[2].subTitle,
                         SettingsData.listSettingsItem[2].icon),
                     buildItem(
                         context,
-                        list[2],
+                        list[3],
                         SettingsData.listSettingsItem[3].title,
                         SettingsData.listSettingsItem[3].subTitle,
                         SettingsData.listSettingsItem[3].icon),
                     buildItem(
                         context,
-                        list[3],
+                        list[4],
                         SettingsData.listSettingsItem[4].title,
                         SettingsData.listSettingsItem[4].subTitle,
                         SettingsData.listSettingsItem[4].icon),
                     buildItem(
                         context,
-                        list[4],
+                        list[5],
                         SettingsData.listSettingsItem[5].title,
                         SettingsData.listSettingsItem[5].subTitle,
                         SettingsData.listSettingsItem[5].icon),
                     buildItem(
                         context,
-                        list[5],
+                        list[6],
                         SettingsData.listSettingsItem[6].title,
                         SettingsData.listSettingsItem[6].subTitle,
                         SettingsData.listSettingsItem[6].icon),
@@ -97,12 +97,14 @@ class Settings extends StatelessWidget {
     );
   }
 
-  Widget buildItem(BuildContext context, Widget widget, String title,
+  Widget buildItem(BuildContext context, String route, String title,
       String subTitle, Widget icon) {
     return InkWell(
       onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => widget));
+        final currentTab = Provider.of<AppStateManager>(context, listen: false)
+            .getSelectedTab
+            .toString();
+        context.goNamed(route, params: {'tab': currentTab});
       },
       child: ListTile(
         contentPadding:
