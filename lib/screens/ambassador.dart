@@ -1,6 +1,10 @@
-import 'package:flutter/material.dart';
+// Page Gestion des ambassadeurs
 
-import '../models/seeme_pages.dart';
+import 'package:flutter/material.dart';
+import 'package:seeme_app/models/seeme_pages.dart';
+
+final _pageStorageBucketAmbassador = PageStorageBucket();
+const _ambassadorPageStorageKey = PageStorageKey<String>('adverts');
 
 class Ambassador extends StatelessWidget {
   static MaterialPage page() {
@@ -11,13 +15,25 @@ class Ambassador extends StatelessWidget {
     );
   }
 
-  const Ambassador({Key? key}) : super(key: key);
+  const Ambassador({Key? key, this.drawerOpen}) : super(key: key);
+  final VoidCallback? drawerOpen;
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return PageStorage(
+      bucket: _pageStorageBucketAmbassador,
       child: Scaffold(
-        body: Container(color: Colors.amber),
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text('Ambassador'),
+          leading: IconButton(
+            onPressed: drawerOpen,
+            icon: const Icon(Icons.person),
+          ),
+        ),
+        body: const Center(
+          child: Text('Ambassador'),
+        ),
       ),
     );
   }
