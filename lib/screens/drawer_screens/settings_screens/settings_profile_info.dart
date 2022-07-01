@@ -1,16 +1,22 @@
 // Page de profile
 
-// New update 21/05/2022-->
-// 1) Affichage des éléments en fonction du mode (lignes 63 à 67)
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:seeme_app/components/components.dart' show IconButtonWidget;
+import 'package:seeme_app/models/models.dart';
 import 'package:seeme_app/screens/screens.dart';
 import 'package:seeme_app/state/state.dart';
 import 'package:seeme_app/data/data.dart';
 
 class SettingsProfileInfo extends StatelessWidget {
+  static MaterialPage page() {
+    return MaterialPage(
+      name: SeeMePages.settingsProfile,
+      key: ValueKey(SeeMePages.settingsProfile),
+      child: const SettingsProfileInfo(),
+    );
+  }
+
   const SettingsProfileInfo({Key? key}) : super(key: key);
 
   @override
