@@ -1,6 +1,10 @@
-import 'package:flutter/material.dart';
+// Page de publicité
 
-import '../models/seeme_pages.dart';
+import 'package:flutter/material.dart';
+import 'package:seeme_app/models/seeme_pages.dart';
+
+final _pageStorageBucketAds = PageStorageBucket();
+const _adsPageStorageKey = PageStorageKey<String>('adverts');
 
 class Adverts extends StatelessWidget {
   static MaterialPage page() {
@@ -11,13 +15,22 @@ class Adverts extends StatelessWidget {
     );
   }
 
-  const Adverts({Key? key}) : super(key: key);
+  const Adverts({Key? key, this.drawerOpen}) : super(key: key);
+  final VoidCallback? drawerOpen;
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Container(color: Colors.blue),
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text('Advertising'),
+        leading: IconButton(
+          onPressed: drawerOpen,
+          icon: const Icon(Icons.person),
+        ),
+      ),
+      body: const Center(
+        child: Text('Advertising'),
       ),
     );
   }
