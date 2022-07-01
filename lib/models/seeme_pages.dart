@@ -1,13 +1,19 @@
 // Ici la liste de toutes les pages de l'application
 
 class SeeMePages {
+  static String root = 'root';
+  // Error page
+  static String error = 'error';
+
 // Ici les pages qui se trouvent dans le dossier /screens/start_screens/
+
   static String splash = 'splashPage';
   static String onboarding = 'onboardingPage';
   static String login = 'loginPage';
 
   // Ici les pages qui se trouvent dans le dossier /screens -->
 
+  static String mainHome = 'mainHomePage';
   static String home = 'homePage';
   static String shop = 'shopPage';
   static String ads = 'adsPage';
@@ -35,36 +41,34 @@ class SeeMePages {
   static String settingsHelp = 'helpPage';
 }
 
-class SeeMePagePath {
-  // Ici les pages qui se trouvent dans le dossier /screens/start_screens/
+class SeeMePagesPath {
+  static String rootPath = '/';
+  // Ici les pages qui se trouvent dans le dossier /screens/start_screens/ -->
   static String splashPath = '/splashPage';
   static String onboardingPath = '/onboardingPage';
   static String loginPath = '/loginPage';
 
   // Ici les pages qui se trouvent dans le dossier /screens -->
-  static String rootPath = '/';
+
   static String homePath = '/home/:tab(0|1|2|3)';
-  static String drawerPath = '/drawer';
+  static String drawerPath = 'drawer';
 
   // Ici les pages qui se trouvent dans le dossier /screens/drawer_screens/ -->
-  static String settingsPath = '/drawer/settingsPage';
-  static String businessPath = '/drawer/businessPage';
-  static String myFavoritesPath = '/drawer/my_favoritesPage';
-  static String myStatsPath = '/drawer/my_statsPage';
-  static String shopFollowedPath = '/drawer/shop_followedPage';
-  static String myCreditsPath = '/drawer/my_creditsPage';
-  static String inviteFriendPath = '/drawer/inviteFriendPage';
+  static String settingsPath = 'settingsPage';
+  static String businessPath = 'businessPage';
+  static String myFavoritesPath = 'my_favoritesPage';
+  static String myStatsPath = 'my_statsPage';
+  static String shopFollowedPath = 'shop_followedPage';
+  static String myCreditsPath = 'my_creditsPage';
+  static String inviteFriendPath = 'inviteFriendPage';
 
   // Ici les pages qui se trouvent dans le dossier /screens/drawer_screens/settings_screens/ -->
-  static String settingsProfilePath = '/drawer/settingsPage/profilePage';
-  static String settingsProfileImagePath =
-      '/drawer/settingsPage/profileImagePage';
-  static String settingsAccountPath = '/drawer/settingsPage/accountPage';
-  static String settingsNotificationPath =
-      '/drawer/settingsPage/notificationsPage';
-  static String settingsClearStoragePath =
-      '/drawer/settingsPage/clearStoragePage';
-  static String settingsLanguagePath = '/drawer/settingsPage/languagePage';
-  static String settingsUserGuidePath = '/drawer/settingsPage/userGuidePage';
-  static String settingsHelpPath = '/drawer/settingsPage/helpPage';
+  static String settingsProfilePath = 'profilePage';
+  static String settingsProfileImagePath = 'profileImagePage';
+  static String settingsAccountPath = 'accountPage';
+  static String settingsNotificationPath = 'notificationsPage';
+  static String settingsClearStoragePath = 'clearStoragePage';
+  static String settingsLanguagePath = 'languagePage';
+  static String settingsUserGuidePath = 'userGuidePage';
+  static String settingsHelpPath = 'helpPage';
 }
