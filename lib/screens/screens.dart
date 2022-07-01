@@ -1,11 +1,11 @@
-// update-->
-// add all settings items export
+// Exportation de tous les fichiers se trouvant dans le dossier /screens
 
 export 'home.dart';
 export 'shop.dart';
 export 'ads.dart';
 export 'ambassador.dart';
 export 'drawer.dart';
+export 'error_screen.dart';
 
 // Drawer screens:-->
 export 'drawer_screens/settings.dart';
@@ -29,5 +29,5 @@ export 'drawer_screens/settings_screens/settings_help.dart';
 // Starting screens -->
 
 export 'start_screens/splash_screen.dart';
-export 'start_screens/onboarding_screen.dart';
 export 'start_screens/login_screen.dart';
+export 'start_screens/onboarding_screen.dart';
