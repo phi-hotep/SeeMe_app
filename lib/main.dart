@@ -1,7 +1,5 @@
 // La racine de l'application
 
-// Update: AppStateManager has been connected on the root of app
-
 import 'package:flutter/material.dart';
 import 'package:seeme_app/navigation/router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
